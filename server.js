@@ -7,7 +7,8 @@ const io = new Server(server);
 
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
 app.use(express.static('public'))
 
 
@@ -72,4 +73,6 @@ setInterval(() => {
 io.on('connection', (socket) => {
     console.log('a user connected');
 });
-server.listen(port);
+server.listen(port, host, function() {
+    console.log("Server started.......");
+  });
