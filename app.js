@@ -8,13 +8,14 @@ const io = new Server(server);
 
 const hostname = '127.0.0.1';
 const port = 3000;
+app.use(express.static('public'))
 
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-router.post('/connect', function (req, res) {
+app.post('/connect', function (req, res) {
     res.render('connect');
 
     const bluetooth = require('node-bluetooth');
@@ -50,6 +51,23 @@ router.post('/connect', function (req, res) {
         });
     device.scan();
 });
+
+
+setInterval(() => {
+
+    var frequncy = Math.random();
+    var RL = 100;
+    var Rs = 17;
+    var Rt = 6.8;
+    var Ct = 0.01;
+    var voltage = frequncy*(RL/Rs)*(Rt*Ct);
+    io.emit("frequency-in",{
+        ferquency : Math.round((frequncy + Number.EPSILON) * 100) / 100,
+        volt: Math.round((voltage + Number.EPSILON) * 100) / 100
+    })
+
+}, 5000);
+
 
 io.on('connection', (socket) => {
     console.log('a user connected');

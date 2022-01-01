@@ -2,74 +2,98 @@
 <html>
 
 <head>
-    <title>Socket.IO chat</title>
-    <style>
-        body {
-            margin: 0;
-            padding-bottom: 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
 
-        #form {
-            background: rgba(0, 0, 0, 0.15);
-            padding: 0.25rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            height: 3rem;
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
-        }
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="ico/favicon.png">
 
-        #input {
-            border: none;
-            padding: 0 1rem;
-            flex-grow: 1;
-            border-radius: 2rem;
-            margin: 0.25rem;
-        }
+        <title>Counter - Coming Soon Theme</title>
 
-        #input:focus {
-            outline: none;
-        }
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
 
-        #form>button {
-            background: #333;
-            border: none;
-            padding: 0 1rem;
-            margin: 0.25rem;
-            border-radius: 3px;
-            outline: none;
-            color: #fff;
-        }
+        <!-- Custom styles for this template -->
+        <link href="css/soon.css" rel="stylesheet">
 
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
 
-        #messages>li {
-            padding: 0.5rem 1rem;
-        }
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
 
-        #messages>li:nth-child(odd) {
-            background: #efefef;
-        }
-    </style>
-</head>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-</script>
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
+            type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
-<body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+    </head>
+    <!-- START BODY -->
+
+<body class="nomobile">
+
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container">
+            <header>
+                <!-- HEADLINE -->
+                <h1 data-animated="GoIn"><b>Radio Frequency To Electric Energy </b></h1>
+            </header>
+            <!-- START TIMER -->
+            <div id="timer" data-animated="FadeIn">
+                <p id="message"></p>
+                <!-- <div id="days" class="timer_box"></div> -->
+                <div id="hours" class="timer_box">
+                    <h1 id="frequency-value">0</h1>
+                    <p><b>Frequency In</b></p>
+                </div>
+                <div id="minutes" class="timer_box">
+                    <h1 id="voltage-value">0</h1>
+                    <p><b>Voltage Out</b></p>
+                </div>
+                <!-- <div id="seconds" class="timer_box"></div> -->
+            </div>
+            <!-- END TIMER -->
+        </div>
+        <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
+        <div id="layer"></div>
+        <!-- END LAYER -->
+        <!-- START SLIDER -->
+        <div id="slider" class="rev_slider">
+            <ul>
+                <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/4.jpg">
+                    <img src="img/slider/4.jpg">
+                </li>
+            </ul>
+        </div>
+        <!-- END SLIDER -->
+    </section>
+    <!-- END HEADER -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/soon/plugins.js"></script>
+    <script src="js/soon/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/soon/custom.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('frequency-in', function (msg) {
+            var voltage = $("#voltage-value")
+            
+            var frequency = $("#frequency-value");
+            frequency.html(msg.ferquency)
+            voltage.html(msg.volt);
+            console.log("Here", msg);
+        });
+    </script>
 </body>
+<!-- END BODY -->
 
 </html>
