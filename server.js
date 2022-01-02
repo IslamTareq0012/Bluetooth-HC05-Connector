@@ -56,7 +56,7 @@ app.post('/connect', function (req, res) {
 
 setInterval(() => {
 
-    var frequncy =Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000;
+    var frequncy =Math.floor(Math.random() * (20 - 10 + 1)) + 10;
     var RL = 100;
     var Rs = 17;
     var Rt = 6.8;
