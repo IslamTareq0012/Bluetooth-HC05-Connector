@@ -47,13 +47,16 @@
                 <!-- <div id="days" class="timer_box"></div> -->
                 <div id="hours" class="timer_box">
                     <h1 id="frequency-value">0</h1>
-                    <p><b>Frequency In</b></p>
+                    <p><b>Frequency In (KHz)</b></p>
                 </div>
                 <div id="minutes" class="timer_box">
                     <h1 id="voltage-value">0</h1>
-                    <p><b>Voltage Out</b></p>
+                    <p><b>Voltage Out (V)</b></p>
                 </div>
-                <!-- <div id="seconds" class="timer_box"></div> -->
+                <div id="seconds" class="timer_box">
+                    <h1 id="ampere-value">0.5</h1>
+                    <p><b>Ampere Value</b></p>
+                </div>
             </div>
             <!-- END TIMER -->
         </div>
@@ -86,7 +89,7 @@
         var socket = io();
         socket.on('frequency-in', function (msg) {
             var voltage = $("#voltage-value")
-            
+
             var frequency = $("#frequency-value");
             frequency.html(msg.ferquency)
             voltage.html(msg.volt);

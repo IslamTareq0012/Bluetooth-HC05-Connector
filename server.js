@@ -56,12 +56,12 @@ app.post('/connect', function (req, res) {
 
 setInterval(() => {
 
-    var frequncy = Math.random();
+    var frequncy =Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000;
     var RL = 100;
     var Rs = 17;
     var Rt = 6.8;
     var Ct = 0.01;
-    var voltage = frequncy*(RL/Rs)*(Rt*Ct);
+    var voltage = frequncy*(Rt*Ct)*(RL/Rs);
     io.emit("frequency-in",{
         ferquency : Math.round((frequncy + Number.EPSILON) * 100) / 100,
         volt: Math.round((voltage + Number.EPSILON) * 100) / 100
