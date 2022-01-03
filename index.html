@@ -14,7 +14,7 @@
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="css/jquery.modal.min.css" />
         <!-- Custom styles for this template -->
         <link href="css/soon.css" rel="stylesheet">
 
@@ -39,7 +39,7 @@
         <div class="container">
             <header>
                 <!-- HEADLINE -->
-                <h1 data-animated="GoIn"><b>Radio Frequency To Electric Energy </b></h1>
+                <h1 data-animated="GoIn"><b>Traffic Signals</b></h1>
             </header>
             <!-- START TIMER -->
             <div id="timer" data-animated="FadeIn">
@@ -67,14 +67,35 @@
         <div id="slider" class="rev_slider">
             <ul>
                 <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/4.jpg">
-                    <img src="img/slider/4.jpg">
+                    <img src="img/slider/5.jpg">
                 </li>
             </ul>
         </div>
         <!-- END SLIDER -->
     </section>
     <!-- END HEADER -->
-
+    <!--  Names Modal  -->
+    <div id="fade" class="modal">
+        <table class="table table-bordered"> 
+            <tr>
+              <th>Company</th>
+              <th>Contact</th>
+              <th>Country</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+          </table>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
+    <!-- Names Modal -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -85,15 +106,23 @@
     <script src="js/soon/jquery.themepunch.revolution.min.js"></script>
     <script src="js/soon/custom.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/jquery.modal.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // $("#fade").modal({
+            //     fadeDuration: 1000,
+            //     fadeDelay: 0.50,
+            //     showClose: false
+            // });
+        });
+    </script>
     <script>
         var socket = io();
         socket.on('frequency-in', function (msg) {
             var voltage = $("#voltage-value")
-
             var frequency = $("#frequency-value");
             frequency.html(msg.ferquency)
             voltage.html(msg.volt);
-            console.log("Here", msg);
         });
     </script>
 </body>
